@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <h:body>
+        <ui:composition template="./templates/Principal.xhtml">
+
+            <ui:define name="content">
+                
+                <f:view>
+                    
+                    <h:form style="background-color: #72f4ee;">
+                        <p:commandButton action="CortecajaCrear.xhtml" actionListener="#{corteCajaBean.prepararNuevo()}" icon="pi pi-plus" style="margin-right: 20px;" styleClass="rounded-button ui-button-success"/>
+                        <p:commandButton action="index.xhtml" icon="pi pi-sign-out" styleClass="rounded-button ui-button-danger"></p:commandButton>
+                        <h1><h:outputText value="Corte de caja."/></h1>
+                        
+                        <p:dataTable value="#{corteCajaBean.cortecajaAll}" var="item">
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="$ Ingresado"/>
+                                </f:facet>
+                                <h:outputText value="#{item.ingresado}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="$ Retirado"/>
+                                </f:facet>
+                                <h:outputText value="#{item.retirado}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Total"/>
+                                </f:facet>
+                                <h:outputText value="#{item.total}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Editar"/>
+                                </f:facet>
+                                <p:commandButton action="CortecajaCrear.xhtml" actionListener="#{corteCajaBean.prepararEditar(item)}" icon="pi pi-pencil" styleClass="rounded-button ui-button-help ui-button-flat"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Eliminar"/>
+                                </f:facet>
+                                <p:commandButton action="CortecajaEliminar.xhtml" actionListener="#{corteCajaBean.prepararEliminar(item)}" icon="pi pi-trash" styleClass="rounded-button ui-button-danger ui-button-flat"/>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                </f:view>
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

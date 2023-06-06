@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+
+        <ui:composition template="./templates/Principal.xhtml">
+
+            <ui:define name="content"> 
+
+                <f:view>
+                    <h:form style="background-color: #72f4ee;">
+
+                        <h1><h:outputText value="#{ventaBean.titulo}" /></h1>
+
+
+                        <h:inputHidden id="id" value="#{ventaBean.v.id}"/> 
+
+                        <p:panelGrid columns="2">
+                            
+                            <p:outputLabel value="Descripcion:" for="descripcion" />
+                            <p:inputText id="descripcion" value="#{ventaBean.v.descripcion}" title="Descripcion" required="true" requiredMessage="The Descripcion field is required."/>
+                            
+                        </p:panelGrid>
+                        <h:commandButton style="font-size: 20px;margin-top: 20px;" action="#{ventaBean.editar()}" styleClass="rounded-button ui-button-info"  value="Editar"/>
+                            <h:commandButton style="font-size: 20px;margin-top: 20px" action="VentaLista.xhtml" styleClass="rounded-button ui-button-help"  value="Cancelar"/>
+
+
+                        <h:form style="margin-top: 20px">
+
+                            <h1><h:outputText style="color: #4e73df;margin-top: 20px" value="Detalle de Venta"/></h1>
+
+                            <p:dataTable value="#{ventaBean.lista2}" var="item">
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Id"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.id}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Nombre"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.nombre}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Cantidad"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.cantidad}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Precio"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.precio}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Total"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.total}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Ventasid"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.ventasid}"/>
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>
+
+                    </h:form>
+                </f:view>
+
+            </ui:define>
+        </ui:composition>
+
+    </h:body>
+</html>
+

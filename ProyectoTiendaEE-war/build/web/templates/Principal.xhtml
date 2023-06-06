@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <title>Pagina principal</title>
+    </h:head>
+
+    <h:body>
+
+        <div id="top">
+           <h1>Tienda Jakarta EE</h1>
+        </div>
+        <div>
+            <div id="left">
+                <p:commandButton action="#{permisoBean.moduloPermisos()}" style="font-size: 20px; margin-bottom: 30px;" value="Permisos" styleClass="ui-button-raised ui-button-secondary"></p:commandButton>
+
+                <p:commandButton action="#{perfilBean.moduloPerfiles()}" style="font-size: 20px; margin-bottom: 30px;" value="Perfiles" styleClass="ui-button-raised ui-button-secondary"></p:commandButton>
+                 
+                <p:commandButton action="#{productoBean.moduloProductos()}" style="font-size: 20px; margin-bottom: 30px;" value="Productos" styleClass="ui-button-raised ui-button-secondary"></p:commandButton>
+                    
+                <p:commandButton action="#{usuarioBean.moduloUsuario()}" style="font-size: 20px; margin-bottom: 30px;" value="Usuarios" styleClass="ui-button-raised ui-button-secondary"></p:commandButton>
+                  
+                <p:commandButton action="#{corteCajaBean.moduloCortecaja()}" style="font-size: 20px; margin-bottom: 30px;" value="Corte de caja" styleClass="ui-button-raised ui-button-secondary"></p:commandButton>
+                 
+                <p:commandButton action="#{tipoDePagoBean.moduloTipodepago()}" style="font-size: 20px; margin-bottom: 30px;" value="Tipos de pagos" styleClass="ui-button-raised ui-button-secondary"></p:commandButton>
+                
+                <p:commandButton action="VentaLista.xhtml" style="font-size: 20px; margin-bottom: 30px;" value="Ventas" styleClass="ui-button-raised ui-button-secondary"></p:commandButton>
+                 
+                <p:commandButton action="DetalleVentaLista.xhtml" style="font-size: 20px; margin-bottom: 30px;" value="Detalle de ventas" styleClass="ui-button-raised ui-button-secondary"></p:commandButton>
+                 
+                
+            </div>
+            <div id="content" class="left_content">
+                <ui:insert name="content">Content</ui:insert>
+            </div>
+        </div>
+        <div id="bottom">
+            <h2>Derechos reservados by Edgar</h2>
+        </div>
+
+    </h:body>
+
+</html>

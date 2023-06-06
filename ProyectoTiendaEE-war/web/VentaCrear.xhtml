@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+        <ui:composition template="./templates/Principal.xhtml">
+
+            <ui:define name="content">
+               
+                <f:view>
+                    
+                    <p:growl id="growl" showDetail="true" sticky="true"/>
+
+                    <h:form>
+                        <h1><h:outputText value="#{ventaBean.titulo}"/></h1>
+
+                            <p:panelGrid columns="2">
+                                <p:outputLabel value="Descripcion:" for="descripcion" />
+                                <p:inputText id="descripcion" value="#{ventaBean.v.descripcion}" title="Descripcion" required="true" requiredMessage="el campo de descripcion esta vacio"/>
+                                <p:outputLabel value="Usuario:" for="usuario" />
+                                <p:inputText id="usuario" value="#{ventaBean.v.usuario}" title="Usuario" required="true" requiredMessage="el usuario esta vacio" />
+                            </p:panelGrid>
+                        
+                        <h:outputLabel style="font-size: 20px" value="Cantidad" for="cantidad" />
+                        <h:inputText style="font-size: 20px;width: 230px" class="form-control text-center" id="cantidad"
+                                     value="#{ventaBean.cantidad}" title="Cantidad" />
+                        <div style="margin-top: 20px"></div>
+                        <h:outputText  style="font-size: 20px; " value="Revise la Cantidad   "
+                            rendered="#{ventaBean.bandera==1}"></h:outputText>
+                        <h:outputText style="font-size: 20px; " value="Producto No encontrado    "
+                            rendered="#{ventaBean.bandera2==1}"></h:outputText>
+
+                        <h:outputLabel style="font-size: 20px" value="Codigo" for="codigo" />
+                        <h:inputText style="font-size: 20px;width: 230px" class="form-control text-center" id="codigo"
+                            value="#{ventaBean.codigo}" title="Codigo" required="true"
+                            requiredMessage="#{ventaBean.titulo}" />
+
+                        <h:outputLabel style="font-size: 20px;color: #000000" value="Codigo" for="codigo" />
+
+                        <h:commandButton style="font-size: 20px;width: 150px" class="btn btn-success"
+                            actionListener="#{ventaBean.agregarProducto()}" value="Agregar" />
+                        
+                            <p:dataTable value="#{ventaBean.lista}" var="item">
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Nombre"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.nombre}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Cantidad"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.cantidad}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Precio"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.precio}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Total"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.total}"/>
+                                </p:column>
+                                
+                                <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Opciones" />
+
+                                </f:facet>
+                                    <p:commandButton actionListener="#{ventaBean.eliminarproductoventa(item)}" icon="pi pi-trash" styleClass="rounded-button ui-button-danger ui-button-flat"/>
+                            </p:column>
+
+                            </p:dataTable>
+                        <p:commandButton style="margin-left: 500px;height: 50px;font-size: 20px" styleClass="rounded-button ui-button-help" value="Cancelar" action="#{ventaBean.cancelarventa()}"/>
+
+                        <p:commandButton style="height: 50px;margin-left: 10px;;font-size: 20px" styleClass="rounded-button ui-button-secondary" value="Guardar" update=":growl" action="#{ventaBean.agregar()}" rendered="#{ventaBean.v.id==null}" />
+                        <h:outputText style="margin-left: 10px ;color: #4e73df;font-size: 50px;" value="Total:  " />
+                        <h:outputText style="margin-left: 10px ;color: #4e73df;font-size: 50px"
+                            value="#{ventaBean.sumaTotalok}" />
+
+                    </h:form>
+                </f:view>
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

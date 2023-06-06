@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+        <ui:composition template="./templates/Principal.xhtml">
+
+            <ui:define name="content">
+
+                <f:view>
+                    
+                    <p:growl id="growl" showDetail="true" sticky="true"/>
+                    
+                    <h:form style="background-color: #72f4ee;">
+                        <h2><h:outputText value="#{corteCajaBean.titulo}"/></h2>
+                        <center>
+                            <h:inputHidden id="id" value="#{corteCajaBean.cortecaja.id}"/>
+
+                            <p:panelGrid columns="2">
+                                <p:outputLabel value="Ingresado:" for="ingresado" />
+                                <p:inputText id="ingresado" value="#{corteCajaBean.cortecaja.ingresado}" title="Ingresado" required="true" />
+                                <p:outputLabel value="Retirado:" for="retirado" />
+                                <p:inputText id="retirado" value="#{corteCajaBean.cortecaja.retirado}" title="Retirado" required="true" />
+                                
+                            </p:panelGrid>
+                            <h2><h:outputText  value="la cantidad retirada es mayor que la ingresada"
+                                           rendered="#{corteCajaBean.bandera==1}"></h:outputText></h2>
+                        </center>
+
+                        <h2><h:outputText value="Agregar Tipo de pago al corte."/></h2>
+                        <center>
+                            <p:outputLabel value="Tipodepago" for="tipodepagoid"/>
+
+                            <p:selectOneMenu style="margin-bottom: 15px" id="tipodepagoid" value="#{corteCajaBean.idtipodepagoseleccionado}" required="true" requiredMessage="The perfilid fiel is required.">
+                                <f:selectItems value="#{tipoDePagoBean.tipodepagoAll}" var="item" itemLabel="#{item.tipodepago}" itemValue="#{item.id}"/>
+                            </p:selectOneMenu>
+                            <p:commandButton style="margin-left: 15px; margin-bottom: 15px" actionListener="#{corteCajaBean.agregarTipodepago()}" value="Agregar" ajax="false"/>
+                        </center>
+                        <p:dataTable value="#{corteCajaBean.listaTipodeventa}" var="item">
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Tipo de pago"/>
+                                </f:facet>
+                                <h:outputText value="#{item.tipoDePagoid.tipodepago}"/>
+                            </p:column>
+                        </p:dataTable>
+                        <p:commandButton style="margin-top: 15px; margin-right: 15px; margin-bottom: 15px" action="#{corteCajaBean.agregar()}" update=":growl" value="Guardar" styleClass="rounded-button ui-button-secondary"/>
+                        
+                        <p:commandButton style="margin-top: 15px; margin-bottom: 15px" action="CortecajaLista.xhtml" value="Cancelar" styleClass="rounded-button ui-button-help" immediate="true"></p:commandButton>
+
+                    </h:form>
+                </f:view>
+
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

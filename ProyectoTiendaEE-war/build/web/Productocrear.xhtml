@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+        <ui:composition template="./templates/Principal.xhtml">
+
+            <ui:define name="content">
+                <f:view>
+                    
+                    <p:growl id="growl" showDetail="true" sticky="true"/>
+
+                    <h:form style="background-color: #72f4ee;">
+                        <h2><h:outputText value="#{productoBean.titulo}"/></h2>
+                        <center>
+                            <h:inputHidden id="id" value="#{productoBean.producto.id}"/>
+                            <p:panelGrid style="margin-bottom: 15px;" columns="2">
+                                <p:outputLabel value="Clave:" for="clave" />
+                                <p:inputText id="clave" value="#{productoBean.producto.clave}" title="Clave" required="true" requiredMessage="El campo Clave esta vacio"/>
+                                <p:outputLabel value="Nombre:" for="descripcion" />
+                                <p:inputText id="descripcion" value="#{productoBean.producto.nombre}" title="Descripcion" required="true" requiredMessage="El campo Nombre esta vacio"/>
+                                <p:outputLabel value="Preciopublico:" for="preciopublico" />
+                                <p:inputText id="preciopublico" value="#{productoBean.producto.preciopublico}" title="Preciopublico" required="true" requiredMessage="El campo Precio Publico esta vacio"/>
+                                <p:outputLabel value="Preciocompra:" for="preciocompra" />
+                                <p:inputText id="preciocompra" value="#{productoBean.producto.preciocompra}" title="Preciocompra" required="true" requiredMessage="El campo Precio Compra esta vacio"/>
+                                <p:outputLabel value="Existencia:" for="existencia" />
+                                <p:inputText id="existencia" value="#{productoBean.producto.existencia}" title="Existencia" required="true" requiredMessage="El campo Existencia esta vacio"/>
+                                <p:outputLabel value="Proveedor:" for="proveedor" />
+                                <p:inputText id="proveedor" value="#{productoBean.producto.proveedor}" title="Proveedor" required="true" requiredMessage="El campo Proveedor esta vacio"/>
+                                <p:outputLabel value="Categoria:" for="categoria" />
+                                <p:inputText id="categoria" value="#{productoBean.producto.categoria}" title="Categoria" required="true" requiredMessage="El campo Categoria esta vacio"/>
+                            </p:panelGrid>
+                            
+                            <p:commandButton action="#{productoBean.agregar()}" update=":growl" value="Guardar" styleClass="rounded-button ui-button-secondary"  rendered="#{productoBean.producto.id==null}" />
+                            <p:commandButton action="#{productoBean.editar()}" update=":growl" value="Modificar" styleClass="rounded-button ui-button-info" rendered="#{productoBean.producto.id!=null}" />
+                            <p:commandButton action="ProductoList.xhtml" value="Cancelar" immediate="true" styleClass="rounded-button ui-button-help"/>
+                            
+                        </center>
+                    </h:form>
+                </f:view>
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

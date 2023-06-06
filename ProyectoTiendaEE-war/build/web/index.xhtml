@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:body style="background-color: #cccccc">
+
+        <ui:composition template="./templates/TemplatePrincipalPage.xhtml">
+
+            <ui:define name="content">
+                <div>
+                    <h:form>
+
+                        <center>
+                            <p:commandButton action="#{permisoBean.moduloPermisos()}" style="font-size: 30px; margin-right: 30px; margin-bottom: 30px;" value="Permisos" styleClass="ui-button-raised ui-button-warning"/>
+
+                            <p:commandButton action="#{perfilBean.moduloPerfiles()}" style="font-size: 30px; margin-right: 30px; margin-bottom: 30px; " value="Perfiles" styleClass="ui-button-raised ui-button-warning"/>
+
+                            <p:commandButton action="#{productoBean.moduloProductos()}" style="font-size: 30px; margin-right: 30px;" value="Productos" styleClass="ui-button-raised ui-button-warning"/> 
+
+                            <p:commandButton action="#{corteCajaBean.moduloCortecaja()}" style="font-size: 30px; margin-right: 30px;" value="Corte de caja" styleClass="ui-button-raised ui-button-warning"/> 
+
+                        </center>
+
+                        <br>
+
+                            <center>
+                                <p:commandButton action="#{tipoDePagoBean.moduloTipodepago()}" style="font-size: 30px; margin-right: 30px;" value="Tipos de pago" styleClass="ui-button-raised ui-button-warning"/> 
+
+                                <p:commandButton action="#{usuarioBean.moduloUsuario()}" style="font-size: 30px; margin-right: 30px;" value="Usuario" styleClass="ui-button-raised ui-button-warning"/> 
+
+                                <p:commandButton action="VentaLista.xhtml" style="font-size: 30px; margin-right: 30px;" value="Ventas" styleClass="ui-button-raised ui-button-warning"/> 
+                                
+                                <p:commandButton action="DetalleVentaLista.xhtml" style="font-size: 30px; margin-right: 30px;" value="Detalles de ventas" styleClass="ui-button-raised ui-button-warning"/> 
+
+                            </center>
+
+                        </br>
+
+                    </h:form>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
